@@ -2,9 +2,50 @@
 <html lang="ru" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>Index page</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <div class="container">
 
+      <div id="app" v-cloak>
+        <h2 class="title">Users list</h2>
+        <users-list :users="users"></users-list>
+      </div>
+
+      <template id="users-list">
+        <div>
+          <table class="table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Name</th>
+                  <th>Age</th>
+                  <th>Balance</th>
+                  <th>E-mail</th>
+                  <th>Phone</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="(user, index) in users" :key="user.id">
+                  <td>{{ index+1 }}</td>
+                  <td>{{ user.name.first + ' ' + user.name.last }}</td>
+                  <td>{{ user.age }}</td>
+                  <td>{{ user.balance }}</td>
+                  <td>{{ user.email }}</td>
+                  <td>{{ user.phone }}</td>
+                </tr>
+              </tbody>
+          </table>
+        </div>
+      </template>
+
+    </div>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="index.js" charset="utf-8"></script>
   </body>
 </html>
