@@ -12,7 +12,7 @@
 
       <div id="app" v-cloak>
         <h2 class="title">Users list</h2>
-        <users-list :users="users"></users-list>
+        <users-list v-bind:users="users"></users-list>
       </div>
 
       <template id="users-list">
@@ -29,7 +29,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="(user, index) in users" :key="user.id">
+                <tr v-for="(user, index) in users" v-bind:key="user.id">
                   <td>{{ index+1 }}</td>
                   <td>{{ user.name.first + ' ' + user.name.last }}</td>
                   <td>{{ user.age }}</td>

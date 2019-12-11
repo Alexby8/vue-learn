@@ -1,24 +1,22 @@
 
-let userForm = {
+var userForm = {
   template: '#user-form',
   props: {
     user: {
       type: Object,
-      default: function(){
-        return {};
-      }
+      required: true
     }
   }
 }
 
-let app = new Vue({
+var app = new Vue({
   el: '#app',
   components:{
     'user-form': userForm
   },
   data: function(){
     return {
-      user: {}
+      user: null
     }
   },
   mounted: function(){
