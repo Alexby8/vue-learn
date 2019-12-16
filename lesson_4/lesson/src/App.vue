@@ -16,12 +16,16 @@
 
       <div id="navbarsExampleDefault" class="collapse navbar-collapse">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item">
-            <router-link class="nav-link" to="/">Home</router-link>
-          </li>
-          <li class="nav-item">
-            <router-link class="nav-link" to="/users">Users</router-link>
-          </li>
+          <router-link tag="li" class="nav-item" to="/">
+            <a class="nav-link">
+              Home
+            </a>
+          </router-link>
+          <router-link tag="li" class="nav-item" to="/users">
+            <a class="nav-link">
+              Users
+            </a>
+          </router-link>
         </ul>
       </div>
     </nav>
@@ -35,8 +39,5 @@
 <style>
 #app {
   margin-top: 80px;
-}
-.nav-link.router-link-exact-active {
-  color: #fff !important;
 }
 </style>

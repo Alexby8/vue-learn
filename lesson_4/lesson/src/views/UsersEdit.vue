@@ -2,7 +2,10 @@
   <div>
     <h2>Редактирование пользователя</h2>
 
-    <user-edit :user="user" />
+    <div v-if="!user" class="alert alert-warning">
+      Загрузка...
+    </div>
+    <user-edit v-else v-model="user" />
   </div>
 </template>
 
@@ -17,7 +20,12 @@ export default {
   },
   data: function() {
     return {
-      user: {}
+      user: null
+    }
+  },
+  computed: {
+    id() {
+      return this.$route.params.id
     }
   },
   mounted() {
@@ -25,7 +33,7 @@ export default {
   },
   methods: {
     loadUser() {
-      axios.get('http://localhost:3004/users/' + this.$route.params.id).then(response => {
+      axios.get('http://localhost:3004/users/' + this.id).then(response => {
         this.user = response.data
       })
     }
