@@ -12,7 +12,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr v-for="(user) in users" :key="user.id">
+      <tr v-for="user in users" :key="user.id">
         <td>{{ user.id }}</td>
         <td>{{ user.firstName + ' ' + user.lastName }}</td>
         <td>{{ user.age }}</td>
@@ -20,9 +20,9 @@
         <td>{{ user.email }}</td>
         <td>{{ user.phone }}</td>
         <td>
-          <router-link class="btn btn-primary m-r-10" :to="'/users/edit/' + user.id"
-            >Edit</router-link
-          >
+          <router-link class="btn btn-primary m-r-10" :to="'/users/edit/' + user.id">
+            Edit
+          </router-link>
         </td>
       </tr>
     </tbody>

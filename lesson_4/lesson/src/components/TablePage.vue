@@ -3,17 +3,13 @@
     <nav>
       <ul class="pagination">
         <li class="page-item">
-          <a class="page-link" href="#" aria-label="Previous">
-            <span aria-hidden="true">&laquo;</span>
-          </a>
+          <button type="button" class="page-link" @click="updatePagingValue(1)">1</button>
         </li>
-        <li class="page-item"><button type="button" class="page-link" @click="updatePagingValue(1)">1</button></li>
-        <li class="page-item"><button type="button" class="page-link" @click="updatePagingValue(2)">2</button></li>
-        <li class="page-item"><button type="button" class="page-link" @click="updatePagingValue(3)">3</button></li>
         <li class="page-item">
-          <a class="page-link" href="#" aria-label="Next">
-            <span aria-hidden="true">&raquo;</span>
-          </a>
+          <button type="button" class="page-link" @click="updatePagingValue(2)">2</button>
+        </li>
+        <li class="page-item">
+          <button type="button" class="page-link" @click="updatePagingValue(3)">3</button>
         </li>
       </ul>
     </nav>
@@ -50,8 +46,8 @@ export default {
     updatePaging() {
       this.$emit('input', this.localPaging)
     },
-    updatePagingValue(value){
-      this.localPaging = Object.assign({}, {page: value, max: this.localPaging.max})
+    updatePagingValue(value) {
+      this.localPaging = Object.assign({}, { page: value, max: this.localPaging.max })
     }
   }
 }

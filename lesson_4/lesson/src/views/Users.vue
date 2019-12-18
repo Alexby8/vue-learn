@@ -13,7 +13,6 @@
       <user-list :users="users" />
       <table-page v-model="paging" />
     </div>
-
   </div>
 </template>
 
@@ -51,7 +50,9 @@ export default {
   },
   methods: {
     loadUsers() {
-      let page_filter = this.pagesize ? '?_page=' + this.paging.page + '&_limit=' + this.pagesize : ''
+      let page_filter = this.pagesize
+        ? '?_page=' + this.paging.page + '&_limit=' + this.pagesize
+        : ''
 
       axios
         .get('http://localhost:3004/users' + page_filter)
@@ -63,13 +64,13 @@ export default {
         })
 
       axios
-          .get('http://localhost:3004/users')
-          .then(response => {
-            this.paging.max = response.data.length
-          })
-          .catch(error => {
-            console.log(error)
-          })
+        .get('http://localhost:3004/users')
+        .then(response => {
+          this.paging.max = response.data.length
+        })
+        .catch(error => {
+          console.log(error)
+        })
     }
   }
 }
