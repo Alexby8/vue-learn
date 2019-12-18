@@ -1,8 +1,5 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '@/views/Home.vue'
-import Users from '@/views/Users.vue'
-import UsersEdit from '@/views/UsersEdit.vue'
 
 Vue.use(VueRouter)
 
@@ -10,17 +7,22 @@ const routes = [
   {
     path: '/',
     name: 'home',
-    component: Home
+    component: () => import('@/views/Home.vue')
   },
   {
     path: '/users',
     name: 'users',
-    component: Users
+    component: () => import('@/views/Users.vue')
   },
   {
     path: '/users/edit/:id',
     name: 'users-edit',
-    component: UsersEdit
+    component: () => import('@/views/UsersEdit.vue')
+  },
+  {
+    path: '/users/add',
+    name: 'users-add',
+    component: () => import('@/views/UsersAdd.vue')
   }
 ]
 

@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-      <a class="navbar-brand" href="#">Navbar</a>
+      <router-link class="navbar-brand" to="/">Navbar</router-link>
       <button
         class="navbar-toggler"
         type="button"
@@ -39,5 +39,12 @@
 <style>
 #app {
   margin-top: 80px;
+  padding-bottom: 50px;
+}
+.m-b-20 {
+  margin-bottom: 20px;
+}
+.m-r-10 {
+  margin-right: 10px;
 }
 </style>

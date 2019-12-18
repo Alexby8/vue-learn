@@ -29,20 +29,6 @@
     "prettier": "1.19.1",
     "vue-template-compiler": "2.6.10"
   },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "node": true
-    },
-    "extends": [
-      "plugin:vue/recommended",
-      "@vue/prettier"
-    ],
-    "rules": {},
-    "parserOptions": {
-      "parser": "babel-eslint"
-    }
-  },
   "browserslist": [
     "> 1%",
     "last 2 versions"

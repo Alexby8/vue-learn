@@ -1,22 +1,24 @@
 <template lang="html">
   <div>
-    <h2>Редактирование пользователя</h2>
+    <h2>Edit user</h2>
 
     <div v-if="!user" class="alert alert-warning">
       Загрузка...
     </div>
-    <user-edit v-else v-model="user" />
+    <user-form v-else v-model="user" />
+
+    <button type="button" class="btn btn-primary m-r-10" @click="save">Save</button>
+    <button type="button" class="btn btn-warning" @click="remove">Delete</button>
   </div>
 </template>
 
 <script>
-import UserEdit from '@/components/UserEdit.vue'
 import axios from 'axios'
 
 export default {
-  name: 'UserEdit',
+  name: 'UsersEdit',
   components: {
-    'user-edit': UserEdit
+    UserForm: () => import('@/components/UserForm.vue')
   },
   data: function() {
     return {
@@ -33,9 +35,36 @@ export default {
   },
   methods: {
     loadUser() {
-      axios.get('http://localhost:3004/users/' + this.id).then(response => {
-        this.user = response.data
-      })
+      axios
+        .get('http://localhost:3004/users/' + this.id)
+        .then(response => {
+          this.user = response.data
+        })
+        .catch(error => {
+          console.log(error)
+        })
+    },
+    save() {
+      axios
+        .patch('http://localhost:3004/users/' + this.id, this.user)
+        .then(() => {
+          this.$router.push('/users')
+        })
+        .catch(error => {
+          console.log(error)
+        })
+    },
+    remove() {
+      if (confirm('Remove this user?')) {
+        axios
+          .delete('http://localhost:3004/users/' + this.id)
+          .then(() => {
+            this.$router.push('/users')
+          })
+          .catch(error => {
+            console.log(error)
+          })
+      }
     }
   }
 }
