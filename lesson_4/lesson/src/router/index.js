@@ -23,6 +23,11 @@ const routes = [
     path: '/users/add',
     name: 'users-add',
     component: () => import('@/views/UsersAdd.vue')
+  },
+  {
+    path: '/users-phones',
+    name: 'users-phones',
+    component: () => import('@/views/UsersPhones.vue')
   }
 ]
 

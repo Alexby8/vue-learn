@@ -4,40 +4,87 @@
       <div class="col-md-4">
         <form>
           <div class="form-group">
-            <input id="user_active" v-model="localUser.isActive" type="checkbox" />
-            <label for="user_active">Active</label>
+            <Checkbox v-model="localUser.isActive" :title="'Active'" />
           </div>
           <div class="form-group">
-            <label for="user_firstName">First Name</label>
-            <input id="user_firstName" v-model="localUser.firstName" class="form-control" />
+            <label for="user_registered">Registered</label>
+            <Datepicker v-model="localUser.registered" />
           </div>
+          <div class="form-group">
+            <label for="user_picture">Photo</label><br />
+            <img :src="localUser.picture" class="img-thumbnail m-b-10" />
+            <AvatarUpload v-model="localUser.picture" />
+          </div>
+
+          <ValidationProvider
+            v-slot="{ errors, invalid }"
+            name="First Name"
+            rules="required"
+            tag="div"
+            class="form-group"
+          >
+            <label for="user_firstName">First Name</label>
+            <input
+              id="user_firstName"
+              v-model="localUser.firstName"
+              type="text"
+              class="form-control"
+              :class="{ 'is-invalid': invalid }"
+            />
+            <div v-if="errors.length" class="invalid-feedback">
+              {{ errors[0] }}
+            </div>
+          </ValidationProvider>
+
           <div class="form-group">
             <label for="user_lastName">Last Name</label>
-            <input id="user_lastName" v-model="localUser.lastName" class="form-control" />
+            <input
+              id="user_lastName"
+              v-model="localUser.lastName"
+              type="text"
+              class="form-control"
+            />
           </div>
           <div class="form-group">
             <label for="user_age">Age</label>
-            <input id="user_age" v-model="localUser.age" class="form-control" />
+            <input id="user_age" v-model="localUser.age" type="text" class="form-control" />
           </div>
-          <div class="form-group">
+
+          <ValidationProvider
+            v-slot="{ errors, invalid }"
+            name="E-mail"
+            rules="required|email"
+            tag="div"
+            class="form-group"
+          >
             <label for="user_email">E-mail</label>
-            <input id="user_email" v-model="localUser.email" class="form-control" />
-          </div>
+            <input
+              id="user_email"
+              v-model="localUser.email"
+              type="text"
+              class="form-control"
+              :class="{ 'is-invalid': invalid }"
+            />
+            <div v-if="errors.length" class="invalid-feedback">
+              {{ errors[0] }}
+            </div>
+          </ValidationProvider>
+
           <div class="form-group">
             <label for="user_phone">Phone</label>
-            <input id="user_phone" v-model="localUser.phone" class="form-control" />
+            <input id="user_phone" v-model="localUser.phone" type="text" class="form-control" />
           </div>
           <div class="form-group">
             <label for="user_company">Company</label>
-            <input id="user_company" v-model="localUser.company" class="form-control" />
+            <input id="user_company" v-model="localUser.company" type="text" class="form-control" />
           </div>
           <div class="form-group">
             <label for="user_address">Address</label>
-            <input id="user_address" v-model="localUser.address" class="form-control" />
+            <input id="user_address" v-model="localUser.address" type="text" class="form-control" />
           </div>
           <div class="form-group">
             <label for="user_balance">Balance</label>
-            <input id="user_balance" v-model="localUser.balance" class="form-control" />
+            <input id="user_balance" v-model="localUser.balance" type="text" class="form-control" />
           </div>
           <div class="form-group">
             <label for="user_about">About</label>
@@ -46,15 +93,17 @@
         </form>
       </div>
     </div>
-
-    <!--<pre>{{ user }}</pre>
-    <pre>{{ localUser }}</pre>-->
   </div>
 </template>
 
 <script>
 export default {
   name: 'UserForm',
+  components: {
+    datepicker: () => import('@/components/Datepicker.vue'),
+    avatarUpload: () => import('@/components/Avatar.vue'),
+    checkbox: () => import('@/components/Checkbox.vue')
+  },
   model: {
     prop: 'user'
   },

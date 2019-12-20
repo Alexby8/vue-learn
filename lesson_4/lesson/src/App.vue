@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-      <router-link class="navbar-brand" to="/">Navbar</router-link>
+      <RouterLink class="navbar-brand" to="/">Navbar</RouterLink>
       <button
         class="navbar-toggler"
         type="button"
@@ -16,22 +16,27 @@
 
       <div id="navbarsExampleDefault" class="collapse navbar-collapse">
         <ul class="navbar-nav mr-auto">
-          <router-link tag="li" class="nav-item" to="/">
+          <RouterLink tag="li" class="nav-item" to="/">
             <a class="nav-link">
               Home
             </a>
-          </router-link>
-          <router-link tag="li" class="nav-item" to="/users">
+          </RouterLink>
+          <RouterLink tag="li" class="nav-item" to="/users">
             <a class="nav-link">
               Users
             </a>
-          </router-link>
+          </RouterLink>
+          <RouterLink tag="li" class="nav-item" to="/users-phones">
+            <a class="nav-link">
+              Users Phones
+            </a>
+          </RouterLink>
         </ul>
       </div>
     </nav>
 
     <main role="main" class="container">
-      <router-view />
+      <RouterView />
     </main>
   </div>
 </template>
@@ -44,7 +49,16 @@
 .m-b-20 {
   margin-bottom: 20px;
 }
+.m-b-10 {
+  margin-bottom: 10px;
+}
 .m-r-10 {
   margin-right: 10px;
+}
+.m-t-10 {
+  margin-top: 10px;
+}
+.hidden {
+  display: none;
 }
 </style>

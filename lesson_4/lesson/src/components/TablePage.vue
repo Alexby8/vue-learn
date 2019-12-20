@@ -8,7 +8,12 @@
           </button>
         </li>
 
-        <li class="page-item" v-for="item in maxPages" :key="item" :class="{ active: currentPage === item }">
+        <li
+          v-for="item in maxPages"
+          :key="item"
+          class="page-item"
+          :class="{ active: currentPage === item }"
+        >
           <button type="button" class="page-link" @click="updatePage(item)">{{ item }}</button>
         </li>
 
@@ -43,24 +48,24 @@ export default {
     }
   },
   computed: {
-    maxPages(){
-      return Math.ceil(this.totalRows / this.pageSize);
+    maxPages() {
+      return Math.ceil(this.totalRows / this.pageSize)
     }
   },
   methods: {
     updatePage(currentPage) {
-      this.$emit('input', currentPage);
+      this.$emit('input', currentPage)
     },
     prevPage() {
-      if(this.currentPage !== 1){
-        let newPage = this.currentPage-1;
-        this.updatePage(newPage);
+      if (this.currentPage !== 1) {
+        let newPage = this.currentPage - 1
+        this.updatePage(newPage)
       }
     },
     nextPage() {
-      if(this.currentPage !== this.maxPages){
-        let newPage = this.currentPage+1;
-        this.updatePage(newPage);
+      if (this.currentPage !== this.maxPages) {
+        let newPage = this.currentPage + 1
+        this.updatePage(newPage)
       }
     }
   }

@@ -9,38 +9,20 @@
     </div>
 
     <div v-else>
-      <table-pagesize v-model.number="pageSize" />
+      <TablePagesize v-model.number="pageSize" />
 
       <table class="table">
         <thead>
-          <tr>
-            <th>#</th>
-            <th>Name</th>
-            <th>Age</th>
-            <th>Balance</th>
-            <th>E-mail</th>
-            <th>Phone</th>
-            <th></th>
-          </tr>
+          <slot name="header"></slot>
         </thead>
         <tbody>
           <tr v-for="item in elements" :key="item.id">
-            <td>{{ item.id }}</td>
-            <td>{{ item.firstName + ' ' + item.lastName }}</td>
-            <td>{{ item.age }}</td>
-            <td>{{ item.balance }}</td>
-            <td>{{ item.email }}</td>
-            <td>{{ item.phone }}</td>
-            <td>
-              <router-link class="btn btn-primary m-r-10" :to="'/users/edit/' + item.id">
-                Edit
-              </router-link>
-            </td>
+            <slot name="row" v-bind="item"></slot>
           </tr>
         </tbody>
       </table>
 
-      <table-page v-model.number="currentPage" :page-size="pageSize" :total-rows="totalRows" />
+      <TablePage v-model.number="currentPage" :page-size="pageSize" :total-rows="totalRows" />
     </div>
   </div>
 </template>
@@ -54,7 +36,7 @@ export default {
     TablePagesize: () => import('@/components/TablePagesize.vue'),
     TablePage: () => import('@/components/TablePage.vue')
   },
-  props:{
+  props: {
     url: {
       type: String,
       required: true
@@ -69,7 +51,7 @@ export default {
     }
   },
   watch: {
-    pageSize(){
+    pageSize() {
       this.currentPage = 1
       this.loadElements()
     },
@@ -89,7 +71,7 @@ export default {
         })
         .then(response => {
           this.elements = response.data
-          this.totalRows = parseInt(response["headers"]["x-total-count"])
+          this.totalRows = parseInt(response['headers']['x-total-count'])
         })
         .catch(error => {
           console.log(error)

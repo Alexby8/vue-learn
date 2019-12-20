@@ -2,7 +2,7 @@
   <div>
     <h2>Add user</h2>
 
-    <user-form v-model="user" />
+    <UserForm v-model="user" />
 
     <button type="button" class="btn btn-primary" @click="save">Save</button>
   </div>
@@ -39,8 +39,8 @@ export default {
     save() {
       axios
         .post('http://localhost:3004/users', this.user)
-        .then(() => {
-          this.$router.push('/users')
+        .then(response => {
+          this.$router.push('/users/edit/' + response.data.id)
         })
         .catch(error => {
           console.log(error)

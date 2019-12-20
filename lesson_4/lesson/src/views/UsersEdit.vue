@@ -5,12 +5,14 @@
     <div v-if="!user" class="alert alert-warning">
       Loadind...
     </div>
-    <div v-else>
-      <user-form v-model="user" />
+    <template v-else>
+      <ValidationObserver ref="form">
+        <UserForm v-model="user" />
+      </ValidationObserver>
 
       <button type="button" class="btn btn-primary m-r-10" @click="save">Save</button>
       <button type="button" class="btn btn-warning" @click="remove">Delete</button>
-    </div>
+    </template>
   </div>
 </template>
 
@@ -31,7 +33,7 @@ export default {
     id() {
       return this.$route.params.id
     },
-    userLink(){
+    userLink() {
       return 'http://localhost:3004/users/' + this.id
     }
   },
@@ -49,7 +51,13 @@ export default {
           console.log(error)
         })
     },
-    save() {
+    async save() {
+      const isValid = await this.$refs.form.validate()
+      if (!isValid) {
+        alert('Errors in form fields')
+        return
+      }
+
       axios
         .patch(this.userLink, this.user)
         .then(() => {

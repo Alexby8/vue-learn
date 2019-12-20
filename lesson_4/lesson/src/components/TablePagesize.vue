@@ -4,7 +4,12 @@
       <div class="col-md-2">
         <div class="form-group">
           <label for="table_pagesize">Show:</label>
-          <select id="table_pagesize" class="form-control" :value="value" @input="updatePagesize($event.target.value)">
+          <select
+            id="table_pagesize"
+            class="form-control"
+            :value="value"
+            @input="updatePagesize($event.target.value)"
+          >
             <option v-for="item in list" :key="item" :value="item">
               {{ item }}
             </option>
@@ -25,7 +30,7 @@ export default {
     },
     list: {
       type: Array,
-      default: () => ([10, 25, 100])
+      default: () => [10, 25, 100]
     }
   },
   methods: {
