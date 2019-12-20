@@ -2,14 +2,20 @@
   <div>
     <nav>
       <ul class="pagination">
-        <li class="page-item">
-          <button type="button" class="page-link" @click="updatePagingValue(1)">1</button>
+        <li class="page-item" :class="{ disabled: currentPage === 1 }">
+          <button type="button" class="page-link" @click="prevPage">
+            <span aria-hidden="true">&laquo;</span>
+          </button>
         </li>
-        <li class="page-item">
-          <button type="button" class="page-link" @click="updatePagingValue(2)">2</button>
+
+        <li class="page-item" v-for="item in maxPages" :key="item" :class="{ active: currentPage === item }">
+          <button type="button" class="page-link" @click="updatePage(item)">{{ item }}</button>
         </li>
-        <li class="page-item">
-          <button type="button" class="page-link" @click="updatePagingValue(3)">3</button>
+
+        <li class="page-item" :class="{ disabled: currentPage === maxPages }">
+          <button type="button" class="page-link" @click="nextPage">
+            <span aria-hidden="true">&raquo;</span>
+          </button>
         </li>
       </ul>
     </nav>
@@ -20,34 +26,42 @@
 export default {
   name: 'Paging',
   model: {
-    prop: 'paging'
+    prop: 'currentPage'
   },
   props: {
-    paging: {
-      type: Object,
+    currentPage: {
+      type: Number,
+      required: true
+    },
+    pageSize: {
+      type: Number,
+      required: true
+    },
+    totalRows: {
+      type: Number,
       required: true
     }
   },
-  data: () => ({
-    localPaging: {
-      page: 1,
-      max: 1
+  computed: {
+    maxPages(){
+      return Math.ceil(this.totalRows / this.pageSize);
     }
-  }),
-  watch: {
-    localPaging: {
-      handler: 'updatePaging'
-    }
-  },
-  created() {
-    this.localPaging = this.paging
   },
   methods: {
-    updatePaging() {
-      this.$emit('input', this.localPaging)
+    updatePage(currentPage) {
+      this.$emit('input', currentPage);
     },
-    updatePagingValue(value) {
-      this.localPaging = Object.assign({}, { page: value, max: this.localPaging.max })
+    prevPage() {
+      if(this.currentPage !== 1){
+        let newPage = this.currentPage-1;
+        this.updatePage(newPage);
+      }
+    },
+    nextPage() {
+      if(this.currentPage !== this.maxPages){
+        let newPage = this.currentPage+1;
+        this.updatePage(newPage);
+      }
     }
   }
 }

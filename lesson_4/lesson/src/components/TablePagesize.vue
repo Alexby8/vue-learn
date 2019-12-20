@@ -4,10 +4,10 @@
       <div class="col-md-2">
         <div class="form-group">
           <label for="table_pagesize">Show:</label>
-          <select id="table_pagesize" v-model="localPagesize" class="form-control">
-            <option :value="10">10</option>
-            <option :value="25">25</option>
-            <option :value="0">All</option>
+          <select id="table_pagesize" class="form-control" :value="value" @input="updatePagesize($event.target.value)">
+            <option v-for="item in list" :key="item" :value="item">
+              {{ item }}
+            </option>
           </select>
         </div>
       </div>
@@ -17,30 +17,20 @@
 
 <script>
 export default {
-  name: 'Pagesize',
-  model: {
-    prop: 'pagesize'
-  },
+  name: 'PageSize',
   props: {
-    pagesize: {
+    value: {
       type: Number,
       required: true
+    },
+    list: {
+      type: Array,
+      default: () => ([10, 25, 100])
     }
-  },
-  data: () => ({
-    localPagesize: 10
-  }),
-  watch: {
-    localPagesize: {
-      handler: 'updatePagesize'
-    }
-  },
-  created() {
-    this.localPagesize = this.pagesize
   },
   methods: {
-    updatePagesize() {
-      this.$emit('input', this.localPagesize)
+    updatePagesize(value) {
+      this.$emit('input', value)
     }
   }
 }

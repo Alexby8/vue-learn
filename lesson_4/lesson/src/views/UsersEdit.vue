@@ -3,12 +3,14 @@
     <h2>Edit user</h2>
 
     <div v-if="!user" class="alert alert-warning">
-      Загрузка...
+      Loadind...
     </div>
-    <user-form v-else v-model="user" />
+    <div v-else>
+      <user-form v-model="user" />
 
-    <button type="button" class="btn btn-primary m-r-10" @click="save">Save</button>
-    <button type="button" class="btn btn-warning" @click="remove">Delete</button>
+      <button type="button" class="btn btn-primary m-r-10" @click="save">Save</button>
+      <button type="button" class="btn btn-warning" @click="remove">Delete</button>
+    </div>
   </div>
 </template>
 
@@ -28,6 +30,9 @@ export default {
   computed: {
     id() {
       return this.$route.params.id
+    },
+    userLink(){
+      return 'http://localhost:3004/users/' + this.id
     }
   },
   mounted() {
@@ -36,7 +41,7 @@ export default {
   methods: {
     loadUser() {
       axios
-        .get('http://localhost:3004/users/' + this.id)
+        .get(this.userLink)
         .then(response => {
           this.user = response.data
         })
@@ -46,7 +51,7 @@ export default {
     },
     save() {
       axios
-        .patch('http://localhost:3004/users/' + this.id, this.user)
+        .patch(this.userLink, this.user)
         .then(() => {
           this.$router.push('/users')
         })
@@ -57,7 +62,7 @@ export default {
     remove() {
       if (confirm('Remove this user?')) {
         axios
-          .delete('http://localhost:3004/users/' + this.id)
+          .delete(this.userLink)
           .then(() => {
             this.$router.push('/users')
           })
