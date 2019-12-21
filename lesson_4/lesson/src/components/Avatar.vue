@@ -21,7 +21,7 @@ import 'vue2-dropzone/dist/vue2Dropzone.min.css'
 export default {
   name: 'AvatarUploader',
   components: {
-    vueDropzone: vue2Dropzone
+    VueDropzone: vue2Dropzone
   },
   props: {
     value: {

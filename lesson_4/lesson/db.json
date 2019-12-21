@@ -17,24 +17,8 @@
       "registered": "04.12.2019"
     },
     {
-      "id": 1,
-      "isActive": false,
-      "balance": "$2,493.01",
-      "picture": "http://placehold.it/128x128",
-      "age": 37,
-      "accessLevel": "admin",
-      "firstName": "Lewis1",
-      "lastName": "Rice2",
-      "company": "UNDERTAP",
-      "email": "lewis.rice@undertap.tv",
-      "phone": "+7 (928) 512-3043",
-      "address": "564 Lacon Court, Downsville, Louisiana, 2161",
-      "about": "<TypeError: loremIpsum is not a function>3",
-      "registered": "16.08.2014"
-    },
-    {
       "id": 2,
-      "isActive": false,
+      "isActive": true,
       "balance": "$2,392.82",
       "picture": "http://placehold.it/128x128",
       "age": 34,

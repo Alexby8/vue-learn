@@ -4,7 +4,7 @@
       <div class="col-md-4">
         <form>
           <div class="form-group">
-            <Checkbox v-model="localUser.isActive" :title="'Active'" />
+            <Checkbox v-model="localUser.isActive" title="Active" />
           </div>
           <div class="form-group">
             <label for="user_registered">Registered</label>
@@ -100,9 +100,9 @@
 export default {
   name: 'UserForm',
   components: {
-    datepicker: () => import('@/components/Datepicker.vue'),
-    avatarUpload: () => import('@/components/Avatar.vue'),
-    checkbox: () => import('@/components/Checkbox.vue')
+    Datepicker: () => import('@/components/Datepicker.vue'),
+    AvatarUpload: () => import('@/components/Avatar.vue'),
+    Checkbox: () => import('@/components/Checkbox.vue')
   },
   model: {
     prop: 'user'

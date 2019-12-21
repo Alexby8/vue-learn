@@ -3,7 +3,7 @@
     <h2>Edit user</h2>
 
     <div v-if="!user" class="alert alert-warning">
-      Loadind...
+      Loading...
     </div>
     <template v-else>
       <ValidationObserver ref="form">
@@ -33,7 +33,7 @@ export default {
     id() {
       return this.$route.params.id
     },
-    userLink() {
+    userApiLink() {
       return 'http://localhost:3004/users/' + this.id
     }
   },
@@ -43,13 +43,16 @@ export default {
   methods: {
     loadUser() {
       axios
-        .get(this.userLink)
+        .get(this.userApiLink)
         .then(response => {
           this.user = response.data
         })
         .catch(error => {
           console.log(error)
         })
+    },
+    redirectToList() {
+      this.$router.push('/users')
     },
     async save() {
       const isValid = await this.$refs.form.validate()
@@ -59,25 +62,27 @@ export default {
       }
 
       axios
-        .patch(this.userLink, this.user)
+        .patch(this.userApiLink, this.user)
         .then(() => {
-          this.$router.push('/users')
+          this.redirectToList()
         })
         .catch(error => {
           console.log(error)
         })
     },
     remove() {
-      if (confirm('Remove this user?')) {
-        axios
-          .delete(this.userLink)
-          .then(() => {
-            this.$router.push('/users')
-          })
-          .catch(error => {
-            console.log(error)
-          })
+      if (!confirm('Remove this user?')) {
+        return
       }
+
+      axios
+        .delete(this.userApiLink)
+        .then(() => {
+          this.redirectToList()
+        })
+        .catch(error => {
+          console.log(error)
+        })
     }
   }
 }

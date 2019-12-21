@@ -16,7 +16,10 @@ export default {
     event: 'change'
   },
   props: {
-    checked: Boolean,
+    checked: {
+      type: Boolean,
+      required: true
+    },
     title: {
       type: String,
       default: ''

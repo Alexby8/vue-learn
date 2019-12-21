@@ -53,7 +53,6 @@ export default {
   watch: {
     pageSize() {
       this.currentPage = 1
-      this.loadElements()
     },
     currentPage: 'loadElements'
   },
@@ -71,7 +70,7 @@ export default {
         })
         .then(response => {
           this.elements = response.data
-          this.totalRows = parseInt(response['headers']['x-total-count'])
+          this.totalRows = parseInt(response['headers']['x-total-count'], 10)
         })
         .catch(error => {
           console.log(error)

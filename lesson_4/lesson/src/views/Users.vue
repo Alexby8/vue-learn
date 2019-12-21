@@ -5,16 +5,18 @@
     <RouterLink class="btn btn-primary m-b-20" to="/users/add">Add user</RouterLink>
 
     <TableView :url="url">
-      <tr slot="header">
-        <th>#</th>
-        <th>Name</th>
-        <th>Age</th>
-        <th>Balance</th>
-        <th>E-mail</th>
-        <th>Phone</th>
-        <th></th>
-      </tr>
-      <template slot="row" slot-scope="props">
+      <template v-slot:header>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Age</th>
+          <th>Balance</th>
+          <th>E-mail</th>
+          <th>Phone</th>
+          <th></th>
+        </tr>
+      </template>
+      <template v-slot:row="props">
         <td>{{ props.id }}</td>
         <td>{{ props.firstName + ' ' + props.lastName }}</td>
         <td>{{ props.age }}</td>

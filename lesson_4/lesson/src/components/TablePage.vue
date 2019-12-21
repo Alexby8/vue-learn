@@ -57,16 +57,20 @@ export default {
       this.$emit('input', currentPage)
     },
     prevPage() {
-      if (this.currentPage !== 1) {
-        let newPage = this.currentPage - 1
-        this.updatePage(newPage)
+      if (this.currentPage === 1) {
+        return
       }
+
+      let newPage = this.currentPage - 1
+      this.updatePage(newPage)
     },
     nextPage() {
-      if (this.currentPage !== this.maxPages) {
-        let newPage = this.currentPage + 1
-        this.updatePage(newPage)
+      if (this.currentPage === this.maxPages) {
+        return
       }
+
+      let newPage = this.currentPage + 1
+      this.updatePage(newPage)
     }
   }
 }

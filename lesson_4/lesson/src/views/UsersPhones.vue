@@ -3,13 +3,15 @@
     <h2 class="m-b-20">Users Phones</h2>
 
     <TableView :url="url">
-      <tr slot="header">
-        <th>#</th>
-        <th>Name</th>
-        <th>Phone</th>
-        <th></th>
-      </tr>
-      <template slot="row" slot-scope="props">
+      <template v-slot:header>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Phone</th>
+          <th></th>
+        </tr>
+      </template>
+      <template v-slot:row="props">
         <td>{{ props.id }}</td>
         <td>{{ props.firstName + ' ' + props.lastName }}</td>
         <td>{{ props.phone }}</td>
