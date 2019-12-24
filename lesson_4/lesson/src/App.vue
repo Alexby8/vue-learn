@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-      <RouterLink class="navbar-brand" to="/">Navbar</RouterLink>
+      <RouterLink class="navbar-brand" to="/">{{ $store.state.projectTitle }}</RouterLink>
       <button
         class="navbar-toggler"
         type="button"
