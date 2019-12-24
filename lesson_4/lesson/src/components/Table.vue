@@ -52,7 +52,11 @@ export default {
   },
   watch: {
     pageSize() {
-      this.currentPage = 1
+      if(this.currentPage !== 1){
+        this.currentPage = 1
+      }else{
+        this.loadElements()
+      }
     },
     currentPage: 'loadElements'
   },
