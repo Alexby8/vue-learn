@@ -27,6 +27,10 @@ export default {
         this.$store.commit('changeTitle', value)
       }
     }
+  },
+  metaInfo: {
+    title: 'My app',
+    titleTemplate: null
   }
 }
 </script>

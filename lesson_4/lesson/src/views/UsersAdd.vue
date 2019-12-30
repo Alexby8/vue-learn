@@ -1,4 +1,4 @@
-<template lang="html">
+<template>
   <div>
     <h2>Add user</h2>
 

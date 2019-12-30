@@ -1,4 +1,4 @@
-<template lang="html">
+<template>
   <div>
     <h2 class="m-b-20">Users list</h2>
 
@@ -41,6 +41,9 @@ export default {
   },
   data: () => ({
     url: 'http://localhost:3004/users'
-  })
+  }),
+  metaInfo: {
+    title: 'Users'
+  }
 }
 </script>

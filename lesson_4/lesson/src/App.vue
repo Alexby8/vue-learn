@@ -21,6 +21,11 @@
               Home
             </a>
           </RouterLink>
+          <RouterLink tag="li" class="nav-item" to="/about">
+            <a class="nav-link">
+              About
+            </a>
+          </RouterLink>
           <RouterLink tag="li" class="nav-item" to="/users">
             <a class="nav-link">
               Users
@@ -48,6 +53,10 @@ export default {
     projectTitle() {
       return this.$store.state.projectTitle
     }
+  },
+  metaInfo: {
+    title: 'My app',
+    titleTemplate: '%s | My app'
   }
 }
 </script>

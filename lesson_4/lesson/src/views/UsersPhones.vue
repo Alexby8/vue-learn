@@ -1,4 +1,4 @@
-<template lang="html">
+<template>
   <div>
     <h2 class="m-b-20">Users Phones</h2>
 
