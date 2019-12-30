@@ -1,7 +1,7 @@
 <template>
   <div>
-    <input ref="datepicker" type="text" class="form-control" :value="value" />
-    <button type="button" class="btn btn-primary m-t-10" @click="showCalendar">
+    <input ref="datepicker" :value="value" type="text" class="form-control" />
+    <button @click="showCalendar" type="button" class="btn btn-primary m-t-10">
       Show calendar
     </button>
   </div>

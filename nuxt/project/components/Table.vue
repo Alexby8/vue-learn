@@ -48,7 +48,7 @@ export default {
       required: true
     }
   },
-  data: function() {
+  data() {
     return {
       elements: null,
       pageSize: 10,
@@ -80,7 +80,7 @@ export default {
         })
         .then(response => {
           this.elements = response.data
-          this.totalRows = parseInt(response['headers']['x-total-count'], 10)
+          this.totalRows = parseInt(response.headers['x-total-count'], 10)
         })
         .catch(error => {
           console.log(error)

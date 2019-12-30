@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-      <RouterLink class="navbar-brand" to="/">{{ $store.state.projectTitle }}</RouterLink>
+      <RouterLink class="navbar-brand" to="/">{{ projectTitle }}</RouterLink>
       <button
         class="navbar-toggler"
         type="button"
@@ -40,6 +40,17 @@
     </main>
   </div>
 </template>
+
+<script>
+export default {
+  name: 'App',
+  computed: {
+    projectTitle() {
+      return this.$store.state.projectTitle
+    }
+  }
+}
+</script>
 
 <style>
 #app {

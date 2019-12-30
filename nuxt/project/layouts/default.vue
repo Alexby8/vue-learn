@@ -1,55 +1,77 @@
 <template>
-  <div>
-    <nuxt />
+  <div id="app">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+      <nuxt-link class="navbar-brand" to="/">
+        {{ projectTitle }}
+      </nuxt-link>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarsExampleDefault"
+        aria-controls="navbarsExampleDefault"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon" />
+      </button>
+
+      <div id="navbarsExampleDefault" class="collapse navbar-collapse">
+        <ul class="navbar-nav mr-auto">
+          <nuxt-link tag="li" class="nav-item" to="/">
+            <a class="nav-link">
+              Home
+            </a>
+          </nuxt-link>
+          <nuxt-link tag="li" class="nav-item" to="/users">
+            <a class="nav-link">
+              Users
+            </a>
+          </nuxt-link>
+          <nuxt-link tag="li" class="nav-item" to="/users-phones">
+            <a class="nav-link">
+              Users Phones
+            </a>
+          </nuxt-link>
+        </ul>
+      </div>
+    </nav>
+
+    <main role="main" class="container">
+      <nuxt />
+    </main>
   </div>
 </template>
 
+<script>
+export default {
+  name: 'App',
+  computed: {
+    projectTitle() {
+      return this.$store.state.projectTitle
+    }
+  }
+}
+</script>
+
 <style>
-html {
-  font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
-    Roboto, 'Helvetica Neue', Arial, sans-serif;
-  font-size: 16px;
-  word-spacing: 1px;
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  box-sizing: border-box;
+#app {
+  margin-top: 80px;
+  padding-bottom: 50px;
 }
-
-*,
-*:before,
-*:after {
-  box-sizing: border-box;
-  margin: 0;
+.m-b-20 {
+  margin-bottom: 20px;
 }
-
-.button--green {
-  display: inline-block;
-  border-radius: 4px;
-  border: 1px solid #3b8070;
-  color: #3b8070;
-  text-decoration: none;
-  padding: 10px 30px;
+.m-b-10 {
+  margin-bottom: 10px;
 }
-
-.button--green:hover {
-  color: #fff;
-  background-color: #3b8070;
+.m-r-10 {
+  margin-right: 10px;
 }
-
-.button--grey {
-  display: inline-block;
-  border-radius: 4px;
-  border: 1px solid #35495e;
-  color: #35495e;
-  text-decoration: none;
-  padding: 10px 30px;
-  margin-left: 15px;
+.m-t-10 {
+  margin-top: 10px;
 }
-
-.button--grey:hover {
-  color: #fff;
-  background-color: #35495e;
+.hidden {
+  display: none;
 }
 </style>

@@ -1,8 +1,8 @@
 <template>
   <div>
     <label class="checkbox-label">
-      <input :checked="checked" type="checkbox" @change="update($event.target.checked)" />
-      <div class="checkbox-indicator"></div>
+      <input :checked="checked" @change="update($event.target.checked)" type="checkbox" />
+      <div class="checkbox-indicator" />
       <div class="checkbox-text">{{ title }}</div>
     </label>
   </div>

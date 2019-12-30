@@ -27,9 +27,9 @@
             <input
               id="user_firstName"
               v-model="localUser.firstName"
+              :class="{ 'is-invalid': invalid }"
               type="text"
               class="form-control"
-              :class="{ 'is-invalid': invalid }"
             />
             <div v-if="errors.length" class="invalid-feedback">
               {{ errors[0] }}
@@ -61,9 +61,9 @@
             <input
               id="user_email"
               v-model="localUser.email"
+              :class="{ 'is-invalid': invalid }"
               type="text"
               class="form-control"
-              :class="{ 'is-invalid': invalid }"
             />
             <div v-if="errors.length" class="invalid-feedback">
               {{ errors[0] }}
@@ -88,7 +88,7 @@
           </div>
           <div class="form-group">
             <label for="user_about">About</label>
-            <textarea id="user_about" v-model="localUser.about" class="form-control"></textarea>
+            <textarea id="user_about" v-model="localUser.about" class="form-control" />
           </div>
         </form>
       </div>

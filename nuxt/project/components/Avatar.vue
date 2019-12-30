@@ -1,7 +1,7 @@
 <template>
   <div>
-    <input ref="file" type="file" class="hidden" @change="upload" />
-    <button type="button" class="btn btn-primary m-t-10 m-b-10" @click="selectFile">
+    <input ref="file" @change="upload" type="file" class="hidden" />
+    <button @click="selectFile" type="button" class="btn btn-primary m-t-10 m-b-10">
       Select file
     </button>
   </div>
